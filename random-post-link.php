@@ -46,7 +46,7 @@ class Random_Post_Link
 		$args = array_merge($args, array(
 			'orderby' => 'rand',
 			'showposts' => 1,
-		);
+		));
 
 		$posts = get_posts($args);
 
