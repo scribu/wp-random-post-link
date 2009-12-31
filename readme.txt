@@ -3,7 +3,7 @@ Contributors: scribu
 Donate link: http://scribu.net/paypal
 Tags: button, redirect
 Requires at least: 2.8
-Tested up to: 2.9-rare
+Tested up to: 2.9
 Stable tag: trunk
 
 Generates a link that takes a visitor to a random post, but never the same as before.
