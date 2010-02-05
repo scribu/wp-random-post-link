@@ -2,7 +2,7 @@
 /*
 Plugin Name: Random Post Link
 Description: Generates a link that takes a user to a random post, but never the same as before.
-Version: 1.0
+Version: 1.0.1
 Author: scribu
 Author URI: http://scribu.net/
 Plugin URI: http://scribu.net/wordpress/random-post-link
@@ -12,21 +12,16 @@ function random_post_link($text = 'Random Post') {
 	printf('<a href="%s">%s</a>', get_random_post_url(), $text);
 }
 
-function get_random_post_url()
-{
+function get_random_post_url() {
 	return trailingslashit(get_bloginfo('url')) . '?' . Random_Post_Link::query_var;
 }
 
 
-Random_Post_Link::init();
-
-class Random_Post_Link
-{
+class Random_Post_Link {
 	const query_var = 'random';
 	const name = 'wp_random_posts';
 
-	function init()
-	{
+	function init() {
 		add_action('init', array(__CLASS__, 'jump'));
 
 		// Fire just after post selection
@@ -34,8 +29,7 @@ class Random_Post_Link
 	}
 
 	// Jump to a random post
-	function jump()
-	{
+	function jump() {
 		if ( ! isset($_GET[self::query_var]) )
 			return;
 
@@ -50,6 +44,16 @@ class Random_Post_Link
 
 		$posts = get_posts($args);
 
+		if ( empty($posts) ) {
+			self::update_cookie(array());
+			unset($args['post__not_in']);
+
+			$posts = get_posts($args);
+		}
+
+		if ( empty($posts) )
+			wp_redirect(get_bloginfo('url'));
+
 		$id = $posts[0]->ID;
 
 		wp_redirect(get_permalink($id));
@@ -57,8 +61,7 @@ class Random_Post_Link
 	}
 
 	// Collect post ids that the user has already seen
-	function manage_cookie()
-	{
+	function manage_cookie() {
 		if ( ! is_single() )
 			return;
 
@@ -73,14 +76,14 @@ class Random_Post_Link
 		self::update_cookie($ids);
 	}
 
-	private function read_cookie()
-	{
-		return explode(' ', $_COOKIE[self::name]);
+	private function read_cookie() {
+		return explode(' ', @$_COOKIE[self::name]);
 	}
 
-	private function update_cookie($ids)
-	{
+	private function update_cookie($ids) {
 		setcookie(self::name, trim(implode(' ', $ids)), 0, '/');
 	}
 }
+
+Random_Post_Link::init();
 
