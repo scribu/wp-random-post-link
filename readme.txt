@@ -24,6 +24,8 @@ You can specify the text you want on the link like so:
 
 `<?php random_post_link('Feeling lucky'); ?>`
 
+Links: [Plugin News](http://scribu.net/wordpress/random-post-link) | [Author's Site](http://scribu.net)
+
 == Installation ==
 
 You can either install it automatically from the WordPress admin, or do it manually:
