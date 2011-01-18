@@ -26,13 +26,6 @@ You can specify the text you want on the link like so:
 
 Links: [Plugin News](http://scribu.net/wordpress/random-post-link) | [Author's Site](http://scribu.net)
 
-== Installation ==
-
-You can either install it automatically from the WordPress admin, or do it manually:
-
-1. Unzip "random-post-link" archive and put the folder into your plugins folder (/wp-content/plugins/).
-1. Activate the plugin from the Plugins menu.
-
 == Frequently Asked Questions ==
 
 = "Parse error: syntax error, unexpected T_CLASS..." Help! =
