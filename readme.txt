@@ -1,6 +1,5 @@
 === Random Post Link ===
 Contributors: scribu
-Donate link: http://scribu.net/paypal
 Tags: button, redirect
 Requires at least: 2.8
 Tested up to: 3.0
